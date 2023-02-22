@@ -22,7 +22,7 @@ function Main() {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log(e.target.ticketClass.value);
+    // console.log(e.target.ticketClass.value);
     createBookingHandler({
       count: data.count,
       destination_from: e.target.from.value,
