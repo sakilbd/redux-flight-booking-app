@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./styles.css";
 import logo from "./img/lws-logo.svg";
 import TableRow from "./TableRow";
-import { createBooking} from "../../redux/bookingApp/actions";
+import { createBooking } from "../../redux/bookingApp/actions";
 import { useDispatch, useSelector } from "react-redux";
 
 function Main() {
@@ -20,11 +20,24 @@ function Main() {
     dispatch(createBooking(formData));
   };
 
-
   const addComponent = (data) => {
     setComponent({
       comps: [...component.comps, <TableRow info={data} />],
     });
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    console.log(e.target.ticketClass.value);
+    createBookingHandler({
+      count: data.count,
+      destination_from: e.target.from.value,
+      destination_to: e.target.to.value,
+      journey_date: e.target.date.value,
+      guests: e.target.guests.value,
+      class_type: e.target.ticketClass.value,
+    });
+    // console.log("refresh prevented");
   };
 
   return (
@@ -44,7 +57,7 @@ function Main() {
       <section>
         <div class="mt-[160px] mx-4 md:mt-[160px] relative">
           <div class="bg-white rounded-md max-w-6xl w-full mx-auto">
-            <form class="first-hero lws-inputform">
+            <form class="first-hero lws-inputform" onSubmit={onSubmit}>
               {/* <!-- From --> */}
               <div class="des-from">
                 <p>Destination From</p>
@@ -161,16 +174,7 @@ function Main() {
                 <span
                   class="text-sm"
                   onClick={() => {
-                    addComponent(data);
-                    createBookingHandler({
-                        count:data.count,
-                      destination_from: "Barishal",
-                      destination_to: "Saidpur",
-                      journey_date: "1-2-2023",
-                      guests: "2",
-                      class_type: "business",
-                    });
-                    
+                    // addComponent(data);
                   }}
                 >
                   Book
@@ -197,14 +201,13 @@ function Main() {
               {/* <!-- Row 1 --> */}
               {/* <TableRow key="0" info={data.destination_to}/> */}
               {/* {component.comps} */}
-              {data.data.map((item,i)=>{
+              {data.data.map((item, i) => {
                 return (
-                    <>
-                    <TableRow key={i} bookInfo={item}/>
-                    </>
-                )
+                  <>
+                    <TableRow key={i} bookInfo={item} />
+                  </>
+                );
               })}
-              
             </tbody>
           </table>
         </div>
