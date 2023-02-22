@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 function Main() {
   let [component, setComponent] = useState({
-    users: [],
+    comps: [],
   });
 
   const data = useSelector((state)=>state.bookingReducer);
@@ -20,9 +20,9 @@ function Main() {
     dispatch(deleteBooking())
   }
 
-  const addUser = () => {
+  const addComponent = (data) => {
     setComponent({
-      users: [...component.users, <TableRow />],
+      comps: [...component.comps, <TableRow  info={data}/>],
     });
   };
 
@@ -157,7 +157,13 @@ function Main() {
                     d="M12 4.5v15m7.5-7.5h-15"
                   />
                 </svg>
-                <span class="text-sm" onClick={()=>createBookingHandler("Dhaka","Saidpur","12-11-2023","1 Person","Business")}>Book</span>
+                <span class="text-sm" onClick={()=>{
+                 addComponent(data);
+                createBookingHandler("Dhaka","Saidpur","12-11-2023","1 Person","Business");
+               
+               }}
+                   
+                >Book</span>
               </button>
             </form>
           </div>
@@ -178,9 +184,9 @@ function Main() {
             </thead>
             <tbody class="divide-y divide-gray-300/20" id="lws-previewBooked">
               {/* <!-- Row 1 --> */}
-              <TableRow />
-              {component.users}
-              {JSON.stringify(data)}
+              {/* <TableRow key="0" info={data.destination_to}/> */}
+              {component.comps}
+              {/* {(data.destination_to)} */}
 
               {/* <!-- Row 2 --> */}
 

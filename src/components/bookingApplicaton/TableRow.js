@@ -1,10 +1,12 @@
 import React from 'react'
 import './styles.css'
 
-function TableRow() {
+function TableRow({info}) {
   return (
-  
+    
       <tr class="lws-bookedTable text-black">
+        {JSON.stringify(info)}
+        
             <td class="px-6 py-4">
               <div class="flex items-center space-x-3">
                 <p class="lws-bookedFrom">Dhaka</p>
