@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./styles.css";
 import logo from "./img/lws-logo.svg";
 import TableRow from "./TableRow";
-import { createBooking,deleteBooking } from "../../redux/bookingApp/actions";
+import { createBooking} from "../../redux/bookingApp/actions";
 import { useDispatch, useSelector } from "react-redux";
 
 function Main() {
@@ -10,19 +10,20 @@ function Main() {
     comps: [],
   });
 
-  const data = useSelector((state)=>state.bookingReducer);
+  const data = useSelector((state) => state.bookingReducer);
   const dispatch = useDispatch();
 
-  const createBookingHandler = (destination_from,destination_to,journey_date,guests,class_type)=>{
-    dispatch(createBooking(destination_from,destination_to,journey_date,guests,class_type));
-  }
-  const deleteBookingHandler = ()=>{
-    dispatch(deleteBooking())
-  }
+  let bookCounter = 1;
+  const createBookingHandler = (formData) => {
+    bookCounter++;
+    console.log(bookCounter);
+    dispatch(createBooking(formData));
+  };
+
 
   const addComponent = (data) => {
     setComponent({
-      comps: [...component.comps, <TableRow  info={data}/>],
+      comps: [...component.comps, <TableRow info={data} />],
     });
   };
 
@@ -157,13 +158,23 @@ function Main() {
                     d="M12 4.5v15m7.5-7.5h-15"
                   />
                 </svg>
-                <span class="text-sm" onClick={()=>{
-                 addComponent(data);
-                createBookingHandler("Dhaka","Saidpur","12-11-2023","1 Person","Business");
-               
-               }}
-                   
-                >Book</span>
+                <span
+                  class="text-sm"
+                  onClick={() => {
+                    addComponent(data);
+                    createBookingHandler({
+                        count:data.count,
+                      destination_from: "Barishal",
+                      destination_to: "Saidpur",
+                      journey_date: "1-2-2023",
+                      guests: "2",
+                      class_type: "business",
+                    });
+                    
+                  }}
+                >
+                  Book
+                </span>
               </button>
             </form>
           </div>
@@ -185,12 +196,15 @@ function Main() {
             <tbody class="divide-y divide-gray-300/20" id="lws-previewBooked">
               {/* <!-- Row 1 --> */}
               {/* <TableRow key="0" info={data.destination_to}/> */}
-              {component.comps}
-              {/* {(data.destination_to)} */}
-
-              {/* <!-- Row 2 --> */}
-
-              {/* <!-- Row 3 --> */}
+              {/* {component.comps} */}
+              {data.data.map((item,i)=>{
+                return (
+                    <>
+                    <TableRow key={i} bookInfo={item}/>
+                    </>
+                )
+              })}
+              
             </tbody>
           </table>
         </div>

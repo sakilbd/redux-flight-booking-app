@@ -1,11 +1,21 @@
 import React from 'react'
-import './styles.css'
+import './styles.css';
+import { deleteBooking } from '../../redux/bookingApp/actions';
+import { useDispatch,useSelector } from 'react-redux';
 
-function TableRow({info}) {
+function TableRow({bookInfo}) {
+
+  const data = useSelector((state) => state.bookingReducer);
+
+const dispatch = useDispatch();
+  const deleteBookingHandler = (e) => {
+    
+    dispatch(deleteBooking(e));
+  };
   return (
     
       <tr class="lws-bookedTable text-black">
-        {JSON.stringify(info)}
+        {/* {JSON.stringify(bookInfo)} */}
         
             <td class="px-6 py-4">
               <div class="flex items-center space-x-3">
@@ -26,7 +36,8 @@ function TableRow({info}) {
             </td>
             <td class="px-6 py-4 text-center">
               <div class="flex justify-center gap-4">
-                <button class="lws-remove">
+              
+                <button class="lws-remove" id={bookInfo.count} onClick={()=>deleteBookingHandler(bookInfo.count)}>
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                     stroke="currentColor" class="w-6 h-6">
                     <path stroke-linecap="round" stroke-linejoin="round"
