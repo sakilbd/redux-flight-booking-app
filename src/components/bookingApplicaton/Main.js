@@ -17,13 +17,18 @@ function Main() {
     e.preventDefault();
     // console.log(e.target.ticketClass.value);
     createBookingHandler({
-      count: data.count,
+      id: Math.random()*100,
       destination_from: e.target.from.value,
       destination_to: e.target.to.value,
       journey_date: e.target.date.value,
       guests: e.target.guests.value,
       class_type: e.target.ticketClass.value,
     });
+    // e.target.from.value = "";
+    // e.target.to.value = "";
+    // e.target.date.value = "";
+    // e.target.guests.value = "";
+    // e.target.ticketClass.value = "";
     // console.log("refresh prevented");
   };
 
@@ -142,8 +147,13 @@ function Main() {
                   </select>
                 </div>
               </div>
-             
-              <button class={`addCity ${data.count>=3?"disabled":''}`} type="submit" id="lws-addCity" disabled={data.count>=3}>
+
+              <button
+                class={`addCity ${data.count >= 3 ? "disabled" : ""}`}
+                type="submit"
+                id="lws-addCity"
+                disabled={data.count >= 3}
+              >
                 <svg
                   width="15px"
                   height="15px"
@@ -158,12 +168,7 @@ function Main() {
                     d="M12 4.5v15m7.5-7.5h-15"
                   />
                 </svg>
-                <span
-                  class="text-sm"
-                  
-                >
-                  Book
-                </span>
+                <span class="text-sm">Book</span>
               </button>
             </form>
           </div>

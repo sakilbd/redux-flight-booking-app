@@ -29,7 +29,7 @@ const bookingReducer = (state = initialState, action) => {
             // console.log("payload : "+ action.payload)
             let tempArray =[]
             for(let info of data) {
-               if(info.count != action.payload){
+               if(info.id != action.payload){
                 tempArray.push(info);
                 // console.log(info.count);
                 

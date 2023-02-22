@@ -33,10 +33,11 @@ function TableRow({ bookInfo }) {
       </td>
       <td class="px-6 py-4 text-center">
         <div class="flex justify-center gap-4">
+      
           <button
             class="lws-remove"
-            id={bookInfo.count}
-            onClick={() => deleteBookingHandler(bookInfo.count)}
+            // id={bookInfo.count}
+            onClick={() => deleteBookingHandler(bookInfo.id)}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
