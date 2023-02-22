@@ -13,17 +13,11 @@ function Main() {
   const data = useSelector((state) => state.bookingReducer);
   const dispatch = useDispatch();
 
-  let bookCounter = 1;
+ 
   const createBookingHandler = (formData) => {
-    bookCounter++;
-    console.log(bookCounter);
+   
+   
     dispatch(createBooking(formData));
-  };
-
-  const addComponent = (data) => {
-    setComponent({
-      comps: [...component.comps, <TableRow info={data} />],
-    });
   };
 
   const onSubmit = (e) => {
@@ -155,8 +149,8 @@ function Main() {
                   </select>
                 </div>
               </div>
-
-              <button class="addCity" type="submit" id="lws-addCity">
+             
+              <button class={`addCity ${data.count>=3?"disabled":''}`} type="submit" id="lws-addCity" disabled={data.count>=3}>
                 <svg
                   width="15px"
                   height="15px"
@@ -173,9 +167,7 @@ function Main() {
                 </svg>
                 <span
                   class="text-sm"
-                  onClick={() => {
-                    // addComponent(data);
-                  }}
+                  
                 >
                   Book
                 </span>

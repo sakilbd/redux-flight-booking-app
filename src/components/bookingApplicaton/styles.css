@@ -987,3 +987,17 @@ select:hover {
         margin-top: 160px;
     }
 }
+
+.disabled {
+    background: rgba(225, 111, 111, .4) !important;
+    color: rgba(21, 20, 20, 0.4) !important;
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+}
+
+.disabled:hover {
+    background: transparent;
+    color: black;
+    box-shadow: none;
+}
