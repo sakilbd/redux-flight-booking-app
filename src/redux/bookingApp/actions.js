@@ -7,9 +7,9 @@ export const createBooking = (data)=> {
   };
 };
 
-export const deleteBooking = (data) => {
+export const deleteBooking = (countNo) => {
   return {
     type: DELETEBOOKING,
-    payload:data,
+    payload:countNo,
   };
 };

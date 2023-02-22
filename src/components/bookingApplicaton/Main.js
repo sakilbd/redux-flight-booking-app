@@ -6,17 +6,10 @@ import { createBooking } from "../../redux/bookingApp/actions";
 import { useDispatch, useSelector } from "react-redux";
 
 function Main() {
-  let [component, setComponent] = useState({
-    comps: [],
-  });
-
   const data = useSelector((state) => state.bookingReducer);
   const dispatch = useDispatch();
 
- 
   const createBookingHandler = (formData) => {
-   
-   
     dispatch(createBooking(formData));
   };
 
